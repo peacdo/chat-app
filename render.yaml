@@ -1,0 +1,21 @@
+services:
+  - name: chat-backend
+    type: web
+    env: docker
+    dockerfilePath: ./backend/Dockerfile
+    envVars:
+      - key: PORT
+        value: 5000
+
+  - name: chat-frontend
+    type: web
+    env: docker
+    dockerfilePath: ./frontend/Dockerfile
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: BACKEND_URL
+        fromService:
+          name: chat-backend
+          type: web
+          property: url

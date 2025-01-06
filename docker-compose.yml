@@ -1,11 +1,21 @@
 version: '3.8'
 services:
-  app:
-    build: ./server
+  frontend:
+    build: ./frontend
     ports:
       - "3000:3000"
     environment:
+      - BACKEND_URL=http://backend:5000
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
       - MONGODB_URI=mongodb://mongodb:27017/chat_app
+      - FRONTEND_URL=http://localhost:3000
     depends_on:
       - mongodb
 
