@@ -9,7 +9,7 @@ app.use(cors());
 const server = http.createServer(app);
 const io = socketIO(server, {
     cors: {
-        origin: "*",
+        origin: "https://chat-frontend-nbkr.onrender.com",
         methods: ["GET", "POST"]
     }
 });
